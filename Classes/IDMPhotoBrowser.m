@@ -1037,7 +1037,7 @@ NSLocalizedStringFromTableInBundle((key), nil, [NSBundle bundleWithPath:[[NSBund
     if ([self isLandscape:orientation])
         height = 32;
 
-    return CGRectMake(0, self.view.bounds.size.height - height, self.view.bounds.size.width, height);
+    return CGRectMake(0, 16, self.view.bounds.size.width, height);
 }
 
 - (CGRect)frameForDoneButtonAtOrientation:(UIInterfaceOrientation)orientation {
@@ -1095,11 +1095,7 @@ NSLocalizedStringFromTableInBundle((key), nil, [NSBundle bundleWithPath:[[NSBund
 
 - (void)updateToolbar {
     // Counter
-    if ([self numberOfPhotos] > 1) {
-        _counterLabel.text = [NSString stringWithFormat:@"%u %@ %lu", _currentPageIndex+1, IDMPhotoBrowserLocalizedStrings(@"of"), (unsigned long)[self numberOfPhotos]];
-    } else {
-        _counterLabel.text = nil;
-    }
+    _counterLabel.text = [NSString stringWithFormat:@"%u %@ %lu", _currentPageIndex+1, IDMPhotoBrowserLocalizedStrings(@"of"), (unsigned long)[self numberOfPhotos]];
 
     // Buttons
     _previousButton.enabled = (_currentPageIndex > 0);
@@ -1146,7 +1142,6 @@ NSLocalizedStringFromTableInBundle((key), nil, [NSBundle bundleWithPath:[[NSBund
     [UIView animateWithDuration:(animated ? 0.1 : 0) animations:^(void) {
         CGFloat alpha = hidden ? 0 : 1;
         [self.navigationController.navigationBar setAlpha:alpha];
-        [_toolbar setAlpha:alpha];
         [_doneButton setAlpha:alpha];
         for (UIView *v in captionViews) v.alpha = alpha;
     } completion:^(BOOL finished) {}];
