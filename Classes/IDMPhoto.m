@@ -140,8 +140,7 @@ caption = _caption;
                                                           cachePolicy:NSURLRequestReturnCacheDataElseLoad
                                                       timeoutInterval:0];
             
-            AFHTTPRequestOperation *op = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-            op.responseSerializer = [AFImageResponseSerializer serializer];
+            AFHTTPRequestOperation *op = [[AFImageRequestOperation alloc] initWithRequest:request];
 
             [op setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
                 UIImage *image = responseObject;
